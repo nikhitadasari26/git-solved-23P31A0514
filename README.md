@@ -35,3 +35,16 @@ A comprehensive CI/CD configuration management tool for enterprise deployments.
 ```bash
 export DEPLOY_ENV=production
 ./scripts/deploy.sh
+
+### Development Mode
+export DEPLOY_ENV=development
+npm install
+npm run dev
+
+## Documentation
+
+Refer to /docs/architecture.md for system design and /config for environment configuration.
+
+## License
+
+MIT License

@@ -1,8 +1,9 @@
 # Application Configuration
 application:
   name: DevOpsSimulator
-  version: 1.0.0
+  version: 2.0.0
   environment: production
+  experimental_mode: false
 
 server:
   host: 0.0.0.0
@@ -18,11 +19,29 @@ database:
   host: prod-db.example.com
   port: 5432
   name: devops_prod
+  distributed: false
 
 features:
   auto_scaling: true
   load_balancer: enabled
   backup_enabled: true
+  chaos_engineering: disabled
+
+ai_features:
+  predictive_scaling: false
+  anomaly_detection: false
+  auto_optimization: false
+  model_version: "none"
+
+cloud_providers:
+  - aws
+  - azure
+  - gcp
+
+security:
+  zero_trust: enabled
+  encryption: AES-256
+  audit_logging: standard
 
 # Development configuration (enabled via environment variable)
 development:

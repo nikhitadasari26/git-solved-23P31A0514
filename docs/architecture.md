@@ -46,7 +46,7 @@ This document covers both **production** and **development** configurations.
 
 ---
 
-##  Deployment Strategy
+## Deployment Strategy
 
 ### Production
 - **Method**: Rolling updates on Kubernetes  
@@ -62,9 +62,6 @@ This document covers both **production** and **development** configurations.
 
 ---
 
-##  Security
+## Security
 - **Production**: SSL/TLS encryption, encrypted DB connections, regular audits  
-- **Development**: SSL disabled, CORS enabled for all origins, debug endpoints exposed for testing  
-
----
-
+- **Development**: SSL disabled, CORS enabled for all origins, debug endpoints exposed for testing

@@ -1,29 +1,47 @@
 {
   "production": {
     "connection": {
-      "host": "prod-db.example.com",
+      "type": "standard",
+      "hosts": ["prod-db.example.com"],
       "port": 5432,
       "database": "devops_production",
       "username": "prod_admin",
       "ssl_mode": "require",
       "pool_size": 20,
-      "timeout": 30
+      "timeout": 30,
+      "connection_pooling": "pgbouncer",
+      "read_replicas": 2
     },
     "backup": {
       "enabled": true,
+      "strategy": "scheduled",
       "schedule": "0 2 * * *",
       "retention_days": 30,
-      "location": "/backups/database"
+      "location": "/backups/database",
+      "encryption": true,
+      "geo_redundancy": false
     },
     "replication": {
       "enabled": true,
       "replicas": 2,
-      "sync_mode": "synchronous"
+      "sync_mode": "synchronous",
+      "multi_region": false
+    },
+    "ai_optimization": {
+      "query_optimization": false,
+      "index_suggestions": false,
+      "auto_vacuum_ml": false
+    },
+    "monitoring": {
+      "slow_query_threshold": 200,
+      "alert_on_anomaly": false,
+      "metrics_export": "disabled"
     }
   },
   "development": {
     "connection": {
-      "host": "localhost",
+      "type": "local",
+      "hosts": ["localhost"],
       "port": 5432,
       "database": "devops_development",
       "username": "dev_user",
@@ -34,6 +52,7 @@
     },
     "backup": {
       "enabled": false,
+      "strategy": "manual",
       "schedule": "manual",
       "retention_days": 7,
       "location": "/tmp/backups"
@@ -41,12 +60,23 @@
     "replication": {
       "enabled": false,
       "replicas": 0,
-      "sync_mode": "asynchronous"
+      "sync_mode": "asynchronous",
+      "multi_region": false
     },
     "features": {
       "seed_data": true,
       "reset_on_restart": true,
       "debug_queries": true
+    },
+    "ai_optimization": {
+      "query_optimization": false,
+      "index_suggestions": false,
+      "auto_vacuum_ml": false
+    },
+    "monitoring": {
+      "slow_query_threshold": 150,
+      "alert_on_anomaly": true,
+      "metrics_export": "prometheus"
     }
   }
 }
